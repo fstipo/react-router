@@ -31,18 +31,19 @@ main header h1 {
   border-bottom: 2px solid gray;
 }
 
+.nav-link {
+  padding: 10px 12px;
+}
 .active__link {
   border-bottom: 10px solid #1f8855;
   background-color: rgb(201, 201, 201);
-  padding: 8px 15px;
   font-weight: bold;
   border-radius: 5px;
 }
 
 .inactive__link:hover {
-  border-bottom: 10px solid #1f8855;
-  background-color: #fff;
-  padding: 8px 15px;
+  border-bottom: 10px solid gray;
   font-weight: bold;
-  border-bottom: 2px solid gray;
+  background-color: #fff;
+  border-radius: 5px;
 }
