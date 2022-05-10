@@ -1,5 +1,7 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, Route, Routes, useLocation } from 'react-router-dom';
+import Dashboard from './Dashboard';
+import Page from './Page';
 import './ReactRouter.css';
 
 export const NavLink = ({
@@ -16,7 +18,7 @@ export const NavLink = ({
   return <Link to={to} className={allClasses} {...rest}></Link>;
 };
 
-const ReactRouter = () => {
+const ReactRouter = ({ title }) => {
   return (
     <div className="container mt-3">
       <header className="d-flex justify-content-start align-items-center gap-2">
@@ -68,10 +70,22 @@ const ReactRouter = () => {
       </header>
       <hr />
       <main>
-        <header>
-          <h1>Dashboard</h1>
-        </header>
-        <section className="section__main">aaaaa</section>
+        <Routes>
+          <Route path="/" element={<Dashboard title={'Dashboard'}></Dashboard>}>
+            <Route path="/" element={<p>Overview</p>} />
+            <Route path="/new-user" element={<p>New User</p>} />
+            <Route path="/sales" element={<p>Sales</p>} />
+          </Route>
+          <Route
+            path="/projects"
+            element={<Page title={'Projects'}></Page>}
+          ></Route>
+          <Route path="/team" element={<Page title={'Team'}></Page>}></Route>
+          <Route
+            path="/calendar"
+            element={<Page title={'Calendar'}></Page>}
+          ></Route>
+        </Routes>
       </main>
     </div>
   );
