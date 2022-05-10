@@ -1,5 +1,20 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './ReactRouter.css';
+
+export const NavLink = ({
+  to,
+  className,
+  activeClassName,
+  inactiveClassName,
+  ...rest
+}) => {
+  const location = useLocation();
+  const isActive = location.pathname === to;
+  const allClasses =
+    className + (isActive ? ` ${activeClassName}` : ` ${inactiveClassName}`);
+  return <Link to={to} className={allClasses} {...rest}></Link>;
+};
 
 const ReactRouter = () => {
   return (
@@ -9,24 +24,44 @@ const ReactRouter = () => {
         <nav>
           <ul className="d-flex list-unstyled pt-2 gap-2">
             <li className="btn btn-link text-decoration-none">
-              <a className="text-dark text-decoration-none fw-bold" href="/">
+              <NavLink
+                className="text-dark text-decoration-none fw-bold"
+                activeClassName={'active'}
+                inactiveClassName={'inactive'}
+                to="/"
+              >
                 Dashboard
-              </a>
+              </NavLink>
             </li>
             <li className="btn btn-link text-decoration-none">
-              <a className="text-dark text-decoration-none fw-bold" href="/">
+              <NavLink
+                className="text-dark text-decoration-none fw-bold"
+                activeClassName={'active'}
+                inactiveClassName={'inactive'}
+                to="/projects"
+              >
                 Projects
-              </a>
+              </NavLink>
             </li>
             <li className="btn btn-link text-decoration-none">
-              <a className="text-dark text-decoration-none fw-bold" href="/">
+              <NavLink
+                className="text-dark text-decoration-none fw-bold"
+                activeClassName={'active'}
+                inactiveClassName={'inactive'}
+                to="/team"
+              >
                 Team
-              </a>
+              </NavLink>
             </li>
             <li className="btn btn-link text-decoration-none">
-              <a className="text-dark text-decoration-none fw-bold" href="/">
+              <NavLink
+                className="text-dark text-decoration-none fw-bold"
+                activeClassName={'active'}
+                inactiveClassName={'inactive'}
+                to="/calendar"
+              >
                 Calendar
-              </a>
+              </NavLink>
             </li>
           </ul>
         </nav>

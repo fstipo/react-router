@@ -18,3 +18,15 @@ main header h1 {
   padding: 10px;
   margin-top: 40px;
 }
+
+.active {
+  border-bottom: 2px solid #1f8855;
+}
+
+/* .inactive {
+  border-bottom: 2px solid gray;
+} */
+
+.inactive:hover {
+  border-bottom: 2px solid gray;
+}
