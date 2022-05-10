@@ -12,6 +12,7 @@ const Dashboard = () => {
             <li className="btn btn-link text-decoration-none">
               <NavLink
                 className="nav-link text-dark text-decoration-none"
+                exact={true}
                 to="/"
                 activeClassName={'active__link'}
                 inactiveClassName={'inactive__link'}

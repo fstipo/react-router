@@ -1,38 +1,53 @@
 import React from 'react';
-import { Link, Route, Routes, useLocation, useRoutes } from 'react-router-dom';
+import {
+  Link,
+  matchRoutes,
+  //   Route,
+  //   Routes,
+  useLocation,
+  useRoutes,
+} from 'react-router-dom';
 import Dashboard from './Dashboard';
 import Page from './Page';
 import './ReactRouter.css';
 
 export const NavLink = ({
   to,
+  exact,
   className,
   activeClassName,
   inactiveClassName,
   ...rest
 }) => {
   const location = useLocation();
-  const isActive = location.pathname === to;
+  const routeMatches = matchRoutes(routes, location);
+  let isActive;
+  if (exact) {
+    isActive = location.pathname === to;
+  } else {
+    isActive = routeMatches.some((match) => match.pathname === to);
+  }
   const allClasses =
     className + (isActive ? ` ${activeClassName}` : ` ${inactiveClassName}`);
   return <Link to={to} className={allClasses} {...rest}></Link>;
 };
 
+const routes = [
+  {
+    path: '/',
+    element: <Dashboard title={'Dashboard'} />,
+    children: [
+      { path: '/', element: <p>Overview</p> },
+      { path: '/new-user', element: <p>New User</p> },
+      { path: '/sales', element: <p>Sales</p> },
+    ],
+  },
+  { path: '/projects', element: <Page title={'Projects'} /> },
+  { path: '/team', element: <Page title={'Team'} /> },
+  { path: '/calendar', element: <Page title={'Calendar'} /> },
+];
+
 const ReactRouter = () => {
-  const routes = [
-    {
-      path: '/',
-      element: <Dashboard title={'Dashboard'} />,
-      children: [
-        { path: '/', element: <p>Overview</p> },
-        { path: '/new-user', element: <p>New User</p> },
-        { path: '/sales', element: <p>Sales</p> },
-      ],
-    },
-    { path: '/projects', element: <Page title={'Projects'} /> },
-    { path: '/team', element: <Page title={'Team'} /> },
-    { path: '/calendar', element: <Page title={'Calendar'} /> },
-  ];
   const element = useRoutes(routes);
   return (
     <div className="container mt-3">
