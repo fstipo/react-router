@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+}
+
+ul {
+  height: 36px;
+  line-height: 36px;
+}
+
+main header h1 {
+  margin-top: 40px;
+}
+
+.section__main {
+  border: 2px dotted gray;
+  height: 70vh;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 40px;
+}
