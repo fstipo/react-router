@@ -2,15 +2,50 @@ import React from 'react';
 import {
   Link,
   matchRoutes,
+  Outlet,
   //   Route,
   //   Routes,
   useLocation,
+  useParams,
   useResolvedPath,
   useRoutes,
 } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import Page from './Page';
 import './ReactRouter.css';
+
+export const UserDetails = () => {
+  let param = useParams();
+  return <p>User {param.id} Details</p>;
+};
+
+export const NewUser = ({ title }) => {
+  return (
+    <div className="row">
+      <div className="col">
+        <p>New User</p>
+
+        <header>
+          <h2>User List:</h2>
+          {[...Array(20).keys()].map((index) => (
+            <div key={index}>
+              <NavLink
+                to={`${index}`}
+                className="text-dark"
+                activeClassName={'active__third '}
+              >
+                User {index}
+              </NavLink>
+            </div>
+          ))}
+        </header>
+      </div>
+      <div className="col">
+        <Outlet />
+      </div>
+    </div>
+  );
+};
 
 export const NavLink = ({
   to,
@@ -44,7 +79,11 @@ const routes = [
     element: <Dashboard title={'Dashboard'} />,
     children: [
       { path: '', element: <p>Overview</p> },
-      { path: 'new-user', element: <p>New User</p> },
+      {
+        path: 'new-user',
+        element: <NewUser>New User</NewUser>,
+        children: [{ path: ':id', element: <UserDetails></UserDetails> }],
+      },
       { path: 'sales', element: <p>Sales</p> },
     ],
   },

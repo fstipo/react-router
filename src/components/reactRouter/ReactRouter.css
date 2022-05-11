@@ -47,3 +47,7 @@ main header h1 {
   background-color: #fff;
   border-radius: 5px;
 }
+
+.active__third {
+  background-color: yellowgreen;
+}

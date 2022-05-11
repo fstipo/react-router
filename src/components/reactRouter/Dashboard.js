@@ -27,7 +27,7 @@ const Dashboard = () => {
                 inactiveClassName={'inactive__link'}
                 to="new-user"
               >
-                New user
+                New User
               </NavLink>
             </li>
             <li className="btn btn-link text-decoration-none">
