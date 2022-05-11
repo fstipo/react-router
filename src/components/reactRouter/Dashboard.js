@@ -13,7 +13,7 @@ const Dashboard = () => {
               <NavLink
                 className="nav-link text-dark text-decoration-none"
                 exact={true}
-                to="/"
+                to=""
                 activeClassName={'active__link'}
                 inactiveClassName={'inactive__link'}
               >
@@ -25,7 +25,7 @@ const Dashboard = () => {
                 className="nav-link text-dark text-decoration-none"
                 activeClassName={'active__link'}
                 inactiveClassName={'inactive__link'}
-                to="/new-user"
+                to="new-user"
               >
                 New user
               </NavLink>
@@ -35,7 +35,7 @@ const Dashboard = () => {
                 className="nav-link text-dark text-decoration-none"
                 activeClassName={'active__link'}
                 inactiveClassName={'inactive__link'}
-                to="/sales"
+                to="sales"
               >
                 Sales
               </NavLink>

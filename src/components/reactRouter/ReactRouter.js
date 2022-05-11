@@ -5,6 +5,7 @@ import {
   //   Route,
   //   Routes,
   useLocation,
+  useResolvedPath,
   useRoutes,
 } from 'react-router-dom';
 import Dashboard from './Dashboard';
@@ -20,12 +21,17 @@ export const NavLink = ({
   ...rest
 }) => {
   const location = useLocation();
+  const resolvedPath = useResolvedPath(to);
+
   const routeMatches = matchRoutes(routes, location);
   let isActive;
+
   if (exact) {
-    isActive = location.pathname === to;
+    isActive = location.pathname === resolvedPath.pathname;
   } else {
-    isActive = routeMatches.some((match) => match.pathname === to);
+    isActive = routeMatches.some(
+      (match) => match.pathname === resolvedPath.pathname
+    );
   }
   const allClasses =
     className + (isActive ? ` ${activeClassName}` : ` ${inactiveClassName}`);
@@ -34,12 +40,12 @@ export const NavLink = ({
 
 const routes = [
   {
-    path: '/',
+    path: '/dashboard',
     element: <Dashboard title={'Dashboard'} />,
     children: [
-      { path: '/', element: <p>Overview</p> },
-      { path: '/new-user', element: <p>New User</p> },
-      { path: '/sales', element: <p>Sales</p> },
+      { path: '', element: <p>Overview</p> },
+      { path: 'new-user', element: <p>New User</p> },
+      { path: 'sales', element: <p>Sales</p> },
     ],
   },
   { path: '/projects', element: <Page title={'Projects'} /> },
@@ -60,7 +66,7 @@ const ReactRouter = () => {
                 className="text-dark text-decoration-none fw-bold"
                 activeClassName={'active'}
                 inactiveClassName={'inactive'}
-                to="/"
+                to="/dashboard"
               >
                 Dashboard
               </NavLink>
